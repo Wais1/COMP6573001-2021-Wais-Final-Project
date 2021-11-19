@@ -14,9 +14,12 @@ const AddTask = ({ onAdd }) => {
             alert('Please add a task')
             return
         }
+        
+        // Start making a new date, then add to the database, and continue
+        const timeStart = new Date();
 
         // Call onAdd to add task.
-        onAdd({ text, day, reminder })
+        onAdd({ text, day, reminder, timeStart })
 
         // Reset fields
         setText('')

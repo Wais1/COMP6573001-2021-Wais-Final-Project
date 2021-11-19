@@ -34,8 +34,9 @@ function App() {
 
     return data;
   }
-  
 
+  
+  
 
 // Add Task
 const addTask = async (task) => {
@@ -57,6 +58,29 @@ const addTask = async (task) => {
   // setTasks([...tasks, newTask])
 
 }
+
+// Refresh tasks every minute
+// useEffect(() => {
+//   const timer = setTimeout(() => {
+//     console.log('This will run after 1 second!')
+//     const newTask = {"text":"wow"}
+//     setTasks(tasks)
+//   }, 998);
+//   return () => clearTimeout(timer);
+// }, []);
+
+// Refreshes tasks each second.
+useEffect(() => {
+  const timer = setInterval(() => { // Creates an interval which will update the current data every second
+  // setTasks([...tasks, {"Test": "test"} ]);
+  setTasks(tasks.map((task) => task.id === 1 ? { ...task, reminder: !task.reminder} : task))
+}, 1000);
+return () => {
+  clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+}
+}, [tasks]);
+
+
 
 // Toggle Reminder
 const toggleReminder = async (id) => {

@@ -5,6 +5,10 @@ const AddTask = ({ onAdd }) => {
     const [text, setText] = useState('')
     const [day, setDay] = useState('')
     const [reminder, setReminder] = useState(false)
+    const [isActive, setIsActive] = useState(false)
+    const [totalDuration, setTotalDuration] = useState(0)
+    const [timeStart, setTimeStart] = useState(Date.now())
+    
 
     // Error prevention before add task with onAdd
     const onSubmit = (e) => {
@@ -19,7 +23,7 @@ const AddTask = ({ onAdd }) => {
         const timeStart = new Date();
 
         // Call onAdd to add task.
-        onAdd({ text, day, reminder, timeStart })
+        onAdd({ text, day, reminder, timeStart, isActive, totalDuration, timeStart })
 
         // Reset fields
         setText('')

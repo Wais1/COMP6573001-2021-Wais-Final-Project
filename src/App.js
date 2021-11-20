@@ -59,33 +59,42 @@ const addTask = async (task) => {
 
 }
 
-// Refresh tasks every minute
-// useEffect(() => {
-//   const timer = setTimeout(() => {
-//     console.log('This will run after 1 second!')
-//     const newTask = {"text":"wow"}
-//     setTasks(tasks)
-//   }, 998);
-//   return () => clearTimeout(timer);
-// }, []);
-
 // Refreshes tasks each second.
 useEffect(() => {
   const timer = setInterval(() => { // Creates an interval which will update the current data every second
   // setTasks([...tasks, {"Test": "test"} ]);
-  setTasks(tasks.map((task) => task.id === 1 ? { ...task, reminder: !task.reminder} : task))
+  setTasks(tasks.map((task) => task.id === -1 ? { ...task, day: '1'} : task))
 }, 1000);
 return () => {
   clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
 }
 }, [tasks]);
 
+// Toggle reminder / New: Toggle active
+const toggleReminder = async (id, curTaskDuration) => {
+  const taskToToggle = await fetchTask(id) // Done through server, can do locally first then update server?
 
+  var updTask; // Declare updTask variable
 
-// Toggle Reminder
-const toggleReminder = async (id) => {
-  const taskToToggle = await fetchTask(id)
-  const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
+  // If is off, turn on and start the new Date() for timeStart
+  if(!taskToToggle.reminder) {
+    console.log("Test")
+    const currTime = new Date()
+    // Toggles on and adds info
+    updTask = { ...taskToToggle, isActive: true, timeStart : currTime, reminder: !taskToToggle.reminder}
+    console.log(updTask)
+  }
+
+  // If is currently on, should add current time to the total time, and toggle off.
+  if (taskToToggle.reminder) {
+    
+      // Update task's total duration with time just spent in seconds.
+      const newTotalDuration = taskToToggle.totalDuration += curTaskDuration
+      // Toggles off and adds info
+      updTask = { ...taskToToggle, isActive: false, totalDuration: newTotalDuration, reminder: !taskToToggle.reminder}
+      console.log(updTask)
+      console.log(updTask.totalDuration)
+  }
 
   const res = await fetch(`http://localhost:5000/tasks/${id}`, { 
     method: `PUT`,
@@ -98,8 +107,27 @@ const toggleReminder = async (id) => {
   // Stores the updated task
   const data = await res.json()
 
-  setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder} : task))
+  setTasks(tasks.map((task) => task.id === id ? { ...task, isActive: data.isActive, timeStart: data.timeStart, totalDuration: data.totalDuration, reminder: data.reminder} : task))
 }
+
+// // Toggle reminder / New: Toggle active
+// const toggleReminder = async (id) => {
+//   const taskToToggle = await fetchTask(id)
+//   const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
+
+//   const res = await fetch(`http://localhost:5000/tasks/${id}`, { 
+//     method: `PUT`,
+//     headers: {
+//       'Content-type': 'application/json'
+//     },
+//     body: JSON.stringify(updTask)
+//   })
+
+//   // Stores the updated task
+//   const data = await res.json()
+
+//   setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder} : task))
+// }
 
 // Delete task
 const deleteTask = async (id) => {

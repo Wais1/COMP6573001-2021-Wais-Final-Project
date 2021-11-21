@@ -4,19 +4,82 @@
       "text": "Coding",
       "day": "",
       "reminder": false,
-      "timeStart": "2021-11-20T08:40:50.043Z",
+      "timeStart": "2021-11-20T17:16:17.422Z",
       "isActive": false,
-      "totalDuration": 121,
-      "id": 1
+      "totalDuration": 761,
+      "id": 2
     },
     {
-      "text": "Gaming",
+      "text": "eat",
       "day": "",
       "reminder": false,
-      "timeStart": "2021-11-20T08:41:43.152Z",
+      "timeStart": "2021-11-21T01:58:11.857Z",
       "isActive": false,
-      "totalDuration": 126,
-      "id": 2
+      "totalDuration": 3444,
+      "id": 3
+    },
+    {
+      "text": "Social media",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T02:55:40.353Z",
+      "isActive": false,
+      "totalDuration": 1644,
+      "id": 4
+    },
+    {
+      "text": "Break",
+      "day": "",
+      "reminder": true,
+      "timeStart": "2021-11-21T07:17:17.257Z",
+      "isActive": true,
+      "totalDuration": 759,
+      "id": 5
+    },
+    {
+      "text": "Gym",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T03:38:04.827Z",
+      "isActive": false,
+      "totalDuration": 0,
+      "id": 6
+    },
+    {
+      "text": "Socialize",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T03:38:29.457Z",
+      "isActive": false,
+      "totalDuration": 0,
+      "id": 7
+    },
+    {
+      "text": "Create things",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T05:42:32.390Z",
+      "isActive": false,
+      "totalDuration": 10789,
+      "id": 8
+    },
+    {
+      "text": "Study product",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T03:44:11.431Z",
+      "isActive": false,
+      "totalDuration": 0,
+      "id": 9
+    },
+    {
+      "text": "F",
+      "day": "",
+      "reminder": false,
+      "timeStart": "2021-11-21T04:00:29.319Z",
+      "isActive": false,
+      "totalDuration": 1901,
+      "id": 10
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { FaTimes } from 'react-icons/fa'
+import { FiEdit } from 'react-icons/fi'
 import { useState, useEffect } from 'react';
 
 // Returns task duration in seconds
@@ -14,10 +15,10 @@ const getTaskDuration = (taskStartDate) => {
     return(secondsPassed)
 }
 
-const Task = ({task, onDelete, onToggle}) => {
+const Task = ({task, onDelete, onToggle, onEdit}) => {
     return (
         <div className={`task ${task.reminder ? 'reminder' : ''}`} onDoubleClick={() => onToggle(task.id, getTaskDuration(task.timeStart))}>
-            <h3>{task.text}  {Math.floor(task.totalDuration / 60) + ' minutes'} <FaTimes style={{color: 'red', cursor: 'pointer' }} onClick={() => onDelete(task.id)}/></h3>
+            <h3>{task.text}  {Math.floor(task.totalDuration / 60) + ' minutes'}  <FiEdit onClick={() => onEdit(task.id)} /><FaTimes style={{color: 'red', cursor: 'pointer' }} onClick={() => onDelete(task.id)}/></h3>
             <p>{task.day} { task.isActive? (getTaskDuration(task.timeStart) > 60 ? Math.floor(getTaskDuration(task.timeStart)/60) + ' minutes' : getTaskDuration(task.timeStart) + ' seconds') : ''}  </p>
         </div>
     )
